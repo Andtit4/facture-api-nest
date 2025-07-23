@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { InvoiceEntity } from 'src/modules/invoices/infrastructure/typeorm/entities/invoice.entity';
+import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class CustomerEntity {
@@ -13,4 +14,7 @@ export class CustomerEntity {
 
   @Column()
   phone: number;
+
+  @OneToMany(() => InvoiceEntity, (customer) => customer.customer_id)
+  customers: CustomerEntity[];
 }
