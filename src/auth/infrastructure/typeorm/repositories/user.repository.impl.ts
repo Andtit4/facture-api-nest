@@ -12,14 +12,16 @@ export class UserRepositoryImpl implements IUserRepository {
     private repo: Repository<UserEntity>,
     // private datasource: DataSource,
   ) {}
+  findByEmail(email: string): Promise<User | null> {
+    // throw new Error('Method not implemented.');
+    return this.repo.findOne({ where: { email } });
+  }
   async findByUsername(username: string): Promise<User | null> {
     return this.repo.findOne({ where: { username } });
-    /* if (!entity) return null;
-    return new User(entity.id, entity.username, entity.password); */
   }
   async save(user: User): Promise<User> {
     const entity = this.repo.create(user);
     const saved = await this.repo.save(entity);
-    return new User(saved.id, saved.username, saved.password);
+    return new User(saved.id, saved.email, saved.username, saved.password);
   }
 }
