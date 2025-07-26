@@ -11,6 +11,9 @@ export class CustomerRepositoryImpl implements ICustomerRepository {
     @InjectRepository(CustomerEntity)
     private repo: Repository<CustomerEntity>,
   ) {}
+  getCustomers(): Promise<Customer[]> {
+    return this.repo.find();
+  }
 
   async findByName(name: string): Promise<Customer | null> {
     return await this.repo.findOne({ where: { name } });
