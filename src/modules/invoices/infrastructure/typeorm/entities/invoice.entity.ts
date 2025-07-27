@@ -1,9 +1,11 @@
 import { CustomerEntity } from 'src/modules/customers/infrastructure/typorm/entities/customer.entity';
+import { InvoiceItemEntity } from 'src/modules/invoice_items/infrastructure/typeorm/entity/invoice_item.entity';
 import {
   Column,
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -39,4 +41,7 @@ export class InvoiceEntity {
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   due_date: Date;
+
+  @OneToMany(() => InvoiceItemEntity, (invoiceItem) => invoiceItem.invoice)
+  invoiceItems: InvoiceItemEntity[];
 }
