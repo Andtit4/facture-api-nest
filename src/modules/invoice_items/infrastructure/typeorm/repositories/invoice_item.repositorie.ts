@@ -16,6 +16,7 @@ export class InvoiceItemImpl implements IInvoiceItemRepository {
       (item) =>
         new invoiceItemModel(
           item.id,
+          item.invoice?.invoice_number || '', // Assuming invoice_number is a property of the InvoiceEntity
           item.invoice_id,
           item.product_id,
           item.quantity,
@@ -29,6 +30,7 @@ export class InvoiceItemImpl implements IInvoiceItemRepository {
     if (!item) return null;
     return new invoiceItemModel(
       item.id,
+      item.invoice?.invoice_number || '', // Assuming invoice_number is a property of the InvoiceEntity
       item.invoice_id,
       item.product_id,
       item.quantity,
@@ -41,6 +43,7 @@ export class InvoiceItemImpl implements IInvoiceItemRepository {
     const saved = await this.repo.save(entity);
     return new invoiceItemModel(
       saved.id,
+      saved.invoice?.invoice_number || '', // Assuming invoice_number is a property of the InvoiceEntity
       saved.invoice_id,
       saved.product_id,
       saved.quantity,

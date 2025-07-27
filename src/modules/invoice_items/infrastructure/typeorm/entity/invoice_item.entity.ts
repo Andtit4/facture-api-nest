@@ -14,7 +14,7 @@ export class InvoiceItemEntity {
   id: number;
 
   @Column()
-  invoice_id: number;
+  invoice_id: string;
 
   @Column()
   product_id: number;
@@ -30,7 +30,7 @@ export class InvoiceItemEntity {
     cascade: true,
     eager: true,
   })
-  @JoinColumn({ name: 'invoice_id' })
+  @JoinColumn({ name: 'invoice_number' })
   invoice: InvoiceEntity;
 
   @Column()
