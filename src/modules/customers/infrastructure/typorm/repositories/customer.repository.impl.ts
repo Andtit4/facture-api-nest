@@ -26,4 +26,9 @@ export class CustomerRepositoryImpl implements ICustomerRepository {
 
     return new Customer(saved.id, saved.name, saved.firstname, saved.phone);
   }
+
+  async getNumberOfCustomers(): Promise<number> {
+    // throw new Error('Method not implemented.');
+    return await this.repo.count();
+  }
 }

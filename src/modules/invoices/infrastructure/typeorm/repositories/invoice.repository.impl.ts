@@ -42,4 +42,18 @@ export class InvoiceRepositoryImpl implements IInvoiceRepository {
   ): Promise<Invoice | null> {
     return await this.repo.findOne({ where: { customer_id } });
   }
+
+  async getTotalAmount(): Promise<number> {
+    const invoices = await this.repo.find();
+    return invoices.reduce((total, invoice) => total + invoice.total_amount, 0);
+  }
+  async getNumberInvoice(): Promise<number> {
+    const count = await this.repo.count();
+    return count;
+  }
+
+  async getNumberStatusOfInvoice(status: string): Promise<number> {
+    const count = await this.repo.count({ where: { status } });
+    return count;
+  }
 }

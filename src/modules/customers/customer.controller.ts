@@ -17,4 +17,10 @@ export class CustomerController {
   async getAll() {
     return this.customerRepo.getCustomers();
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('number-customers')
+  async getNumberOfCustomers() {
+    return this.customerRepo.getNumberOfCustomers();
+  }
 }

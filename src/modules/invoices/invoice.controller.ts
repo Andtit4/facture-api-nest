@@ -17,4 +17,19 @@ export class InvoiceController {
   async getAll() {
     return await this.invoiceRepo.getInvoices();
   }
+
+  @Get('total-amount')
+  async getTotalAmount() {
+    return await this.invoiceRepo.getTotalAmount();
+  }
+
+  @Get('number-invoices')
+  async getNumberInvoices() {
+    return await this.invoiceRepo.getNumberInvoice();
+  }
+
+  @Get('number-status/:status')
+  async getNumberStatusOfInvoice(status: string) {
+    return await this.invoiceRepo.getNumberStatusOfInvoice(status);
+  }
 }
